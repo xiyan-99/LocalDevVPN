@@ -147,3 +147,6 @@ restart_title = "Restart";
 restart_message = "To apply the changes, you need to restart the application.";
 confirmYes = "Yes";
 confirmNo = "No";
+
+"simplified_chinese" = "Simplified Chinese";
+"localized_by_xiyan" = "Chinese localization: iOS夕颜";

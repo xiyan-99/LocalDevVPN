@@ -702,6 +702,15 @@ struct ContentView: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 24)
+
+                Link(destination: URL(string: "https://github.com/xiyan-99")!) {
+                    Text("localized_by_xiyan")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .underline()
+                        .frame(maxWidth: .infinity)
+                }
+                .padding(.bottom, 12)
             }
             .background(backgroundColor.ignoresSafeArea())
             .navigationTitle("LocalDevVPN")
@@ -1109,7 +1118,7 @@ struct DashboardCard<Content: View>: View {
 
 struct SettingsView: View {
     @Environment(\.presentationMode) var presentationMode
-    @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.languageCode ?? "en"
+    @AppStorage("selectedLanguage") private var selectedLanguage = "zh-Hans"
     @AppStorage("TunnelDeviceIP") private var deviceIP = "10.7.0.0"
     @AppStorage("TunnelFakeIP") private var fakeIP = "10.7.0.1"
     @AppStorage("TunnelSubnetMask") private var subnetMask = "255.255.255.0"
@@ -1161,6 +1170,7 @@ struct SettingsView: View {
 
                 Section(header: Text("language")) {
                     Picker("dropdown_language", selection: $selectedLanguage) {
+                        Text("simplified_chinese").tag("zh-Hans")
                         Text("english").tag("en")
                         Text("spanish").tag("es")
                         Text("italian").tag("it")
@@ -1562,8 +1572,8 @@ struct SetupPageView: View {
 
 class LanguageManager: ObservableObject {
     static let shared = LanguageManager()
-    @Published var currentLanguage: String = Locale.current.languageCode ?? "en"
-    private let supportedLanguages = ["en", "es", "it", "pl", "ko"]
+    @Published var currentLanguage: String = UserDefaults.standard.string(forKey: "selectedLanguage") ?? "zh-Hans"
+    private let supportedLanguages = ["zh-Hans", "en", "es", "it", "pl", "ko"]
 
     func updateLanguage(to languageCode: String) {
         if supportedLanguages.contains(languageCode) {
@@ -1571,8 +1581,8 @@ class LanguageManager: ObservableObject {
             UserDefaults.standard.set([languageCode], forKey: "AppleLanguages")
             UserDefaults.standard.synchronize()
         } else {
-            currentLanguage = "en" // FALLBACK TO DEFAULT LANGUAGE
-            UserDefaults.standard.set(["en"], forKey: "AppleLanguages")
+            currentLanguage = "zh-Hans" // FALLBACK TO DEFAULT LANGUAGE
+            UserDefaults.standard.set(["zh-Hans"], forKey: "AppleLanguages")
             UserDefaults.standard.synchronize()
         }
     }

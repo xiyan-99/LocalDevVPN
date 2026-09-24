@@ -192,9 +192,10 @@
 			};
 			buildConfigurationList = 4EB3C7532D96631A00C1B22C /* Build configuration list for PBXProject "LocalDevVPN" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				"zh-Hans",
 				en,
 				Base,
 				es,
